@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — Sum Gadgets for Jira</title>
+<style>
+  body { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; line-height: 1.6;
+         max-width: 44rem; margin: 0 auto; padding: 48px 20px 96px; color: #172B4D; }
+  h1 { font-size: 2rem; letter-spacing: -0.02em; margin-bottom: .25rem; }
+  h2 { font-size: 1.15rem; margin-top: 2.25rem; }
+  .updated { color: #6B778C; font-size: .9rem; margin-top: 0; }
+  ul { padding-left: 1.25rem; }
+  li { margin-bottom: .4rem; }
+  code { background: #F4F5F7; padding: .1rem .3rem; border-radius: 3px; font-size: .9em; }
+  footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #DFE1E6;
+           color: #6B778C; font-size: .9rem; }
+</style>
+</head>
+<body>
+
+<h1>Privacy Policy</h1>
+<p class="updated">Sum Gadgets for Jira · Last updated: 18 August 2026</p>
+
+<h2>Summary</h2>
+<p>
+  Sum Gadgets for Jira does not collect, store or transmit any of your data.
+  The app runs entirely inside Atlassian's infrastructure. No data ever leaves
+  your Atlassian environment, and the app developer has no access to it.
+</p>
+
+<h2>What the app does with your data</h2>
+<p>
+  When you view a gadget, the app asks the Jira REST API for the issues matching
+  the JQL filter you configured, reads the numeric field you selected, adds the
+  values up and displays the result. This happens in memory, each time the gadget
+  is displayed.
+</p>
+<ul>
+  <li>Nothing is written to any database, log or file.</li>
+  <li>Nothing is cached beyond the lifetime of a single request.</li>
+  <li>Nothing is sent to any third party or to any server outside Atlassian.</li>
+  <li>The app makes no outbound network requests of any kind.</li>
+</ul>
+
+<h2>Permissions</h2>
+<p>
+  The app requests a single Jira permission scope, <code>read:jira-work</code>,
+  which allows it to read issues. It is read-only: the app cannot create, modify
+  or delete anything in your Jira instance.
+</p>
+<p>
+  All Jira requests are made <strong>on behalf of the user viewing the gadget</strong>,
+  using that user's own permissions. If a user cannot see a project in Jira, its
+  issues are not included in the totals shown to them.
+</p>
+
+<h2>Gadget configuration</h2>
+<p>
+  The settings you choose for a gadget — the JQL filter, the field to sum and the
+  grouping — are stored by Jira as part of your dashboard configuration, inside
+  your own Atlassian site. They are not stored by the app or by its developer.
+</p>
+
+<h2>Runs on Atlassian</h2>
+<p>
+  This app is built on Atlassian Forge and carries the <em>Runs on Atlassian</em>
+  designation, which means all of its compute and storage stay within Atlassian's
+  infrastructure and it is covered by Atlassian's own data residency and security
+  commitments.
+</p>
+
+<h2>Personal data</h2>
+<p>
+  The app does not store personal data. Issue data, including assignee names,
+  is read and rendered at display time and then discarded. No profiles, no
+  analytics, no tracking, no cookies.
+</p>
+
+<h2>Changes to this policy</h2>
+<p>
+  If the app's behaviour changes in a way that affects this policy, this page will
+  be updated and the date above revised.
+</p>
+
+<h2>Contact</h2>
+<p>
+  For any question about this policy, write to
+  <a href="mailto:alejandromartinez.webdev@gmail.com">alejandromartinez.webdev@gmail.com</a>.
+</p>
+
+<footer>
+  Sum Gadgets for Jira is developed by Alejandro Martinez Herreros.
+  Jira and Atlassian are trademarks of Atlassian Pty Ltd.
+</footer>
+
+</body>
+</html>
