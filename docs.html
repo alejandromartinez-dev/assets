@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Documentation — Sum Gadgets for Jira</title>
+<style>
+  body { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; line-height: 1.6;
+         max-width: 46rem; margin: 0 auto; padding: 48px 20px 96px; color: #172B4D; }
+  h1 { font-size: 2rem; letter-spacing: -0.02em; margin-bottom: .25rem; }
+  h2 { font-size: 1.2rem; margin-top: 2.5rem; }
+  h3 { font-size: 1rem; margin-top: 1.75rem; }
+  .sub { color: #6B778C; margin-top: 0; }
+  ol, ul { padding-left: 1.25rem; }
+  li { margin-bottom: .45rem; }
+  code { background: #F4F5F7; padding: .1rem .35rem; border-radius: 3px; font-size: .9em; }
+  table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .95rem; }
+  th, td { text-align: left; padding: .5rem .6rem; border-bottom: 1px solid #DFE1E6; vertical-align: top; }
+  th { color: #6B778C; font-weight: 600; font-size: .85rem; text-transform: uppercase; letter-spacing: .04em; }
+  .callout { background: #F4F5F7; border-left: 3px solid #1868DB; padding: .9rem 1.1rem;
+             border-radius: 4px; margin: 1.25rem 0; }
+  footer { margin-top: 3.5rem; padding-top: 1.5rem; border-top: 1px solid #DFE1E6;
+           color: #6B778C; font-size: .9rem; }
+  a { color: #1868DB; }
+</style>
+</head>
+<body>
+
+<h1>Sum Gadgets for Jira</h1>
+<p class="sub">Documentation · Sum by field gadget</p>
+
+<h2>What it does</h2>
+<p>
+  Jira's built-in dashboard gadgets count issues. <strong>Sum by field</strong> adds
+  them up instead. Give it a JQL filter and a numeric field, and it shows the total,
+  a breakdown by status, priority, assignee or issue type, and a bar chart.
+</p>
+
+<h2>Installing</h2>
+<ol>
+  <li>In Jira, go to <strong>Apps → Explore more apps</strong>.</li>
+  <li>Search for <strong>Sum Gadgets for Jira</strong> and install it.</li>
+  <li>You need Jira administrator permissions to install apps.</li>
+</ol>
+
+<h2>Adding the gadget</h2>
+<ol>
+  <li>Open a Jira dashboard, or create one from <strong>Dashboards → Create dashboard</strong>.</li>
+  <li>Click <strong>Add gadget</strong>.</li>
+  <li>Search for <strong>Sum by field</strong> and add it.</li>
+  <li>The configuration screen opens automatically.</li>
+</ol>
+
+<h2>Configuring it</h2>
+<table>
+  <tr><th>Field</th><th>What to enter</th></tr>
+  <tr>
+    <td><strong>JQL filter</strong></td>
+    <td>Any valid JQL query, for example <code>project = ABC</code> or
+        <code>project = ABC AND sprint in openSprints()</code>. This decides which
+        issues are included.</td>
+  </tr>
+  <tr>
+    <td><strong>Field to sum</strong></td>
+    <td>The dropdown lists every numeric field that exists in your site — story
+        points, estimates, and any custom number field you have created.</td>
+  </tr>
+  <tr>
+    <td><strong>Group by</strong></td>
+    <td>Status, Priority, Assignee or Issue type. This is how the breakdown below
+        the total is split.</td>
+  </tr>
+</table>
+<p>Click <strong>Save</strong>. You can change any of it later from the gadget's <strong>⋯ → Edit</strong> menu.</p>
+
+<h2>Reading the result</h2>
+<ul>
+  <li>The large number is the total of the chosen field across all matching issues.</li>
+  <li>Under it: the field name, how many issues matched, and how many of them have no value in that field.</li>
+  <li>Each row shows a group, its sum, its share of the total, and its issue count.</li>
+  <li>The chart shows the same groups visually.</li>
+</ul>
+
+<h2>Story Points or Story point estimate?</h2>
+<div class="callout">
+  <p style="margin:0">
+    Jira has two similar fields and only one of them usually holds your data.
+    <strong>Story Points</strong> is used in company-managed projects;
+    <strong>Story point estimate</strong> is used in team-managed ones. Which one is
+    filled in depends on how your project was created.
+  </p>
+</div>
+<p>
+  The gadget lists both if both exist. If you pick the wrong one it will not show a
+  misleading zero — it tells you that the field has no values for those issues, so
+  you can switch to the other one.
+</p>
+
+<h2>Troubleshooting</h2>
+
+<h3>The total is 0 and it says "no values found"</h3>
+<p>The field you chose is empty for those issues. Try the other story point field, or
+   check that the field is present on the issue screens for that project.</p>
+
+<h3>"Your JQL isn't valid"</h3>
+<p>The message includes Jira's own explanation. The most common causes are a project
+   key that doesn't exist and a missing <code>AND</code> or <code>OR</code>. You can
+   test the query in <strong>Filters → Advanced issue search</strong> first.</p>
+
+<h3>Some issues are missing from the total</h3>
+<p>The gadget runs every query with the permissions of the person looking at it. If a
+   viewer cannot see a project in Jira, its issues are not counted for them. Two people
+   looking at the same gadget can legitimately see different totals.</p>
+
+<h3>Only part of my results are counted</h3>
+<p>The gadget reads up to 5,000 issues per query. Above that it shows
+   "showing first 5,000". Narrow the JQL filter if you hit this.</p>
+
+<h2>Permissions and data</h2>
+<p>
+  The app requests one read-only scope, <code>read:jira-work</code>. It cannot create,
+  change or delete anything. It is built natively on Atlassian Forge and carries the
+  <em>Runs on Atlassian</em> designation: it makes no outbound network requests and
+  stores no data of any kind. See the
+  <a href="privacy.html">privacy policy</a> for details.
+</p>
+
+<h2>Support</h2>
+<p>
+  Write to <a href="mailto:alejandromartinez.webdev@gmail.com">alejandromartinez.webdev@gmail.com</a>.
+  The app is maintained by one developer; replies usually take a few working days.
+</p>
+
+<footer>
+  Sum Gadgets for Jira is developed by Nazalabs.
+  Jira and Atlassian are trademarks of Atlassian Pty Ltd.
+</footer>
+
+</body>
+</html>
